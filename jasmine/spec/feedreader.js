@@ -76,21 +76,42 @@ $(function() {
       });
     });
 
+    /* Test that ensures when the loadFeed function is called
+     * and completes its work, there is at least
+     * a single .entry element within the .feed container.
+     */
     describe('Initial Entries', function() {
-      /* TODO: Write a test that ensures when the loadFeed
-       * function is called and completes its work, there is at least
-       * a single .entry element within the .feed container.
-       * Remember, loadFeed() is asynchronous so this test wil require
-       * the use of Jasmine's beforeEach and asynchronous done() function.
-       */
+       beforeEach(function(done) {
+         loadFeed(0, done);
+       });
+
+       it('should have more than one .entry element', function() {
+         var entries = $('.entry');
+         expect(entries.length).toBeGreaterThan(0);
+       });
     });
 
-
+    /* Test that ensures when a new feed is loaded
+     * by the loadFeed function that the content actually changes.
+     */
     describe('New Feed Selection', function() {
-      /* TODO: Write a test that ensures when a new feed is loaded
-       * by the loadFeed function that the content actually changes.
-       * Remember, loadFeed() is asynchronous.
-       */
+      var initialTitle = $('.header-title').text();
+      var newTitle;
+
+      // load different feed, save new title
+      beforeEach(function(done) {
+         loadFeed(1, done);
+         newTitle = $('.header-title').text();
+      });
+
+      it('should have a different title', function() {
+        expect(newTitle).not.toEqual(initialTitle);
+      });
+
+      // restore default feed
+      afterEach(function(done) {
+        loadFeed(0, done);
+      });
     });
 
 }());
