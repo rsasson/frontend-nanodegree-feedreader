@@ -96,13 +96,18 @@ $(function() {
      * by the loadFeed function that the content actually changes.
      */
     describe('New Feed Selection', function() {
-      var initialTitle = $('.header-title').text();
+      var initialTitle;
       var newTitle;
 
-      // load different feed, save new title
+      // load different feeds in order and save titles
       beforeEach(function(done) {
-        loadFeed(1, done);
-        newTitle = $('.header-title').text();
+        loadFeed(0, function() {
+          initialTitle = $('.header-title').text();
+          loadFeed(1, function() {
+            newTitle = $('.header-title').text();
+            done();
+          });
+        });
       });
 
       it('should have a different title', function() {
