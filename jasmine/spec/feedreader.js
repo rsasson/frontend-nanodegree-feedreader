@@ -14,41 +14,41 @@ $(function() {
     * feeds definitions, the allFeeds variable in our application.
     */
     describe('RSS Feeds', function() {
-        /* This is our first test - it tests to make sure that the
-         * allFeeds variable has been defined and that it is not
-         * empty. Experiment with this before you get started on
-         * the rest of this project. What happens when you change
-         * allFeeds in app.js to be an empty array and refresh the
-         * page?
-         */
-        it('are defined', function() {
-            expect(allFeeds).toBeDefined();
-            expect(allFeeds.length).not.toBe(0);
-        });
+      /* This is our first test - it tests to make sure that the
+       * allFeeds variable has been defined and that it is not
+       * empty. Experiment with this before you get started on
+       * the rest of this project. What happens when you change
+       * allFeeds in app.js to be an empty array and refresh the
+       * page?
+       */
+      it('are defined', function() {
+          expect(allFeeds).toBeDefined();
+          expect(allFeeds.length).not.toBe(0);
+      });
 
 
-        /* Test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
-         */
-         it('have defined and non empty urls', function() {
-           allFeeds.forEach(function(entry) {
-             expect(entry.url).toBeDefined();
-             expect(entry.url.length).not.toBe(0);
-           });
+      /* Test that loops through each feed
+       * in the allFeeds object and ensures it has a URL defined
+       * and that the URL is not empty.
+       */
+       it('have defined and non empty urls', function() {
+         allFeeds.forEach(function(entry) {
+           expect(entry.url).toBeDefined();
+           expect(entry.url.length).not.toBe(0);
          });
+       });
 
 
-        /* Test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
-         */
-         it('have defined and non empty names', function() {
-           allFeeds.forEach(function(entry) {
-             expect(entry.name).toBeDefined();
-             expect(entry.name.length).not.toBe(0);
-           });
+      /* Test that loops through each feed
+       * in the allFeeds object and ensures it has a name defined
+       * and that the name is not empty.
+       */
+       it('have defined and non empty names', function() {
+         allFeeds.forEach(function(entry) {
+           expect(entry.name).toBeDefined();
+           expect(entry.name.length).not.toBe(0);
          });
+       });
     });
 
     describe('The menu', function() {
@@ -81,14 +81,15 @@ $(function() {
      * a single .entry element within the .feed container.
      */
     describe('Initial Entries', function() {
-       beforeEach(function(done) {
-         loadFeed(0, done);
-       });
 
-       it('should have more than one .entry element', function() {
-         var entries = $('.entry');
-         expect(entries.length).toBeGreaterThan(0);
-       });
+      beforeEach(function(done) {
+        loadFeed(0, done);
+      });
+
+      it('should have more than one .entry element', function() {
+        var entries = $('.entry');
+        expect(entries.length).toBeGreaterThan(0);
+      });
     });
 
     /* Test that ensures when a new feed is loaded
@@ -100,8 +101,8 @@ $(function() {
 
       // load different feed, save new title
       beforeEach(function(done) {
-         loadFeed(1, done);
-         newTitle = $('.header-title').text();
+        loadFeed(1, done);
+        newTitle = $('.header-title').text();
       });
 
       it('should have a different title', function() {
